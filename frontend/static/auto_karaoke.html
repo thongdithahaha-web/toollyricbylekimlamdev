@@ -644,26 +644,60 @@
     </div>
   </div>
 
-  <!-- BACKGROUND PANEL -->
+  <!-- BACKGROUND PANEL (ANH & VIDEO) -->
   <div id="bgPanel" class="overlay hidden">
     <div class="panel">
-      <h2>Background Settings</h2>
-      <label>Image or video URL — or drag & drop a file</label>
-      <input id="bgPathInput" type="text" placeholder="Paste URL…" style="margin-bottom:9px">
-      <div style="display:flex;gap:7px;margin-bottom:9px;flex-wrap:wrap">
-        <button id="bgBtnImport" style="background:#559bff;color:#0c0c0e">Import File</button>
-        <button id="bgBtnMenu" style="background:#3c3c4e;color:#f5f5f8">Menu</button>
-        <button id="bgBtnDisplay" style="background:#3c3c4e;color:#f5f5f8">Display</button>
-        <button id="bgBtnBoth" style="background:#559bff;color:#0c0c0e">Both</button>
+      <h2>🖼️ / 🎬 Cài đặt Background</h2>
+      
+      <label>1. Chọn nơi áp dụng:</label>
+      <div style="display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap">
+        <button id="bgBtnBoth" class="bg-target-btn" style="background:#559bff;color:#0c0c0e;flex:1;font-weight:bold;padding:9px 10px;border-radius:8px">Cả hai (Both)</button>
+        <button id="bgBtnMenu" class="bg-target-btn" style="background:#3c3c4e;color:#f5f5f8;flex:1;padding:9px 10px;border-radius:8px">Menu chính</button>
+        <button id="bgBtnDisplay" class="bg-target-btn" style="background:#3c3c4e;color:#f5f5f8;flex:1;padding:9px 10px;border-radius:8px">Màn hình Lyric</button>
       </div>
+
+      <label>2. Nạp file từ máy / điện thoại:</label>
+      <div style="display:flex;gap:8px;margin-bottom:12px">
+        <button id="bgBtnImportImg" style="background:#00e1a5;color:#0c0c0e;flex:1;font-weight:bold;padding:12px 8px;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer">
+          🖼️ Thêm Ảnh
+        </button>
+        <button id="bgBtnImportVid" style="background:#a55fff;color:#fff;flex:1;font-weight:bold;padding:12px 8px;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer">
+          🎬 Thêm Video
+        </button>
+      </div>
+      <input type="file" id="bgFileInputImg" accept="image/*" style="display:none">
+      <input type="file" id="bgFileInputVid" accept="video/*,.mp4,.webm,.mov,.avi,.mkv,.m4v" style="display:none">
+
+      <label>3. Hoặc dán Link URL ảnh/video (mp4, webm, jpg...):</label>
+      <div style="display:flex;gap:6px;margin-bottom:12px">
+        <input id="bgPathInput" type="text" placeholder="https://.../video.mp4 hoặc .jpg" style="flex:1;margin-bottom:0">
+        <button id="bgBtnLoad" style="background:#559bff;color:#0c0c0e;font-weight:bold;padding:8px 16px;border-radius:8px;cursor:pointer">Load</button>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 12px;margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <label style="margin:0;color:#c8c8d8;font-size:12px">🔊 Âm thanh video nền:</label>
+          <button id="bgBtnMuteToggle" style="background:#3c3c4e;color:#ffbe0b;font-size:11px;padding:5px 10px;border-radius:6px;border:none;cursor:pointer;font-weight:bold">
+            🔇 Đang tắt tiếng (Tốt nhất)
+          </button>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <label style="margin:0;color:#c8c8d8;font-size:12px">🌓 Độ tối nền:</label>
+          <div style="display:flex;gap:4px">
+            <button class="bg-dim-btn" data-dim="0.25" style="background:#3c3c4e;color:#fff;font-size:11px;padding:4px 9px;border-radius:5px;border:none;cursor:pointer">Sáng (25%)</button>
+            <button class="bg-dim-btn" data-dim="0.45" style="background:#559bff;color:#000;font-size:11px;padding:4px 9px;border-radius:5px;border:none;cursor:pointer;font-weight:bold">Vừa (45%)</button>
+            <button class="bg-dim-btn" data-dim="0.70" style="background:#3c3c4e;color:#fff;font-size:11px;padding:4px 9px;border-radius:5px;border:none;cursor:pointer">Tối (70%)</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="bgInfo" style="margin-bottom:10px;padding:9px 12px;background:rgba(0,0,0,0.3);border-radius:8px;font-size:12px;line-height:1.6"></div>
+      <div id="bgMsg" style="font-size:12px;min-height:16px;margin-bottom:10px;text-align:center"></div>
+
       <div class="btn-row">
-        <button id="bgBtnLoad" style="background:#559bff;color:#0c0c0e">Load</button>
-        <button id="bgBtnClear" style="background:#7a1e1e;color:#fff">Clear</button>
-        <button id="bgBtnClose" style="background:#3c3c4e;color:#f5f5f8">Close</button>
+        <button id="bgBtnClear" style="background:#7a1e1e;color:#fff;font-weight:bold;cursor:pointer">🗑️ Xóa Background</button>
+        <button id="bgBtnClose" style="background:#3c3c4e;color:#f5f5f8;cursor:pointer">Đóng</button>
       </div>
-      <div id="bgMsg" style="margin-top:9px;font-size:13px;min-height:15px"></div>
-      <div id="bgInfo" style="margin-top:7px;font-size:11px;color:#5f5f69;line-height:1.6"></div>
-      <input type="file" id="bgFileInput" accept="image/*,video/*" style="display:none">
     </div>
   </div>
 
@@ -1004,6 +1038,8 @@
     const bgPath = { menu: '', display: '' };
     const bgBase64 = { menu: null, display: null };
     const bgMime = { menu: null, display: null };
+    let bgVideoMuted = true;
+    let bgDimLevel = 0.45;
 
     // ============================================================
     // AUTO KARAOKE STATE
@@ -1019,39 +1055,109 @@
     // ============================================================
     function newWord(w) { return [w, currentColor, false, false, false, false, -1, '', false]; }
 
-    function loadBg(src, target, b64, mime) {
-      const isVid = /\.(mp4|webm|ogg|mov|avi)(\?|#|$)/i.test(src);
+    function isVideoSource(src, mime, filename) {
+      if (mime && typeof mime === 'string' && mime.toLowerCase().startsWith('video/')) return true;
+      if (src && typeof src === 'string' && src.startsWith('data:video/')) return true;
+      const testStr = ((filename || '') + ' ' + (src || '')).toLowerCase();
+      return /\.(mp4|webm|ogg|mov|avi|m4v|mkv|flv|wmv)(\?|#|$)/i.test(testStr);
+    }
+
+    function loadBg(src, target, b64, mime, filename) {
+      const isVid = isVideoSource(src, mime, filename);
       const set = t => {
         if (isVid) {
-          if (bgVid[t]) { bgVid[t].pause(); bgVid[t].src = ''; }
+          if (bgVid[t]) {
+            try { bgVid[t].pause(); bgVid[t].src = ''; } catch (e) {}
+            bgVid[t] = null;
+          }
+          if (bgPath[t] && bgPath[t].startsWith('blob:') && bgPath[t] !== src) {
+            try { URL.revokeObjectURL(bgPath[t]); } catch (e) {}
+          }
           const v = document.createElement('video');
-          v.src = src; v.loop = true; v.muted = true; v.autoplay = true; v.playsInline = true;
-          v.play().catch(() => { });
-          bgVid[t] = v; bgSrc[t] = null; bgPath[t] = src;
+          v.src = src;
+          v.loop = true;
+          v.muted = bgVideoMuted;
+          v.defaultMuted = bgVideoMuted;
+          v.autoplay = true;
+          v.playsInline = true;
+          v.setAttribute('playsinline', '');
+          v.setAttribute('webkit-playsinline', '');
+          v.setAttribute('autoplay', '');
+          v.setAttribute('loop', '');
+          if (bgVideoMuted) v.setAttribute('muted', '');
+          v.crossOrigin = 'anonymous';
+
+          v.onloadedmetadata = () => {
+            v.play().catch(e => console.log('Video autoplay note:', e));
+            updateBgInfo();
+          };
+          v.oncanplay = () => {
+            v.play().catch(() => {});
+          };
+          v.onerror = (err) => {
+            console.warn('Video load error:', err);
+            showBgMsg('Không thể mở video này', false);
+          };
+
+          v.play().catch(() => {});
+
+          bgVid[t] = v;
+          bgSrc[t] = null;
+          bgPath[t] = filename || src;
         } else {
-          if (bgVid[t]) { bgVid[t].pause(); bgVid[t].src = ''; bgVid[t] = null; }
-          const img = new Image(); img.crossOrigin = 'anonymous';
-          img.onload = () => { bgSrc[t] = img; };
-          img.onerror = () => showBgMsg('Cannot load image', false);
-          img.src = src; bgPath[t] = src;
+          if (bgVid[t]) {
+            try { bgVid[t].pause(); bgVid[t].src = ''; } catch (e) {}
+            bgVid[t] = null;
+          }
+          if (bgPath[t] && bgPath[t].startsWith('blob:') && bgPath[t] !== src) {
+            try { URL.revokeObjectURL(bgPath[t]); } catch (e) {}
+          }
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = () => {
+            bgSrc[t] = img;
+            updateBgInfo();
+          };
+          img.onerror = () => showBgMsg('Không thể mở ảnh', false);
+          img.src = src;
+          bgPath[t] = filename || src;
         }
-        if (b64) { bgBase64[t] = b64; bgMime[t] = mime; }
+        if (b64) {
+          bgBase64[t] = b64;
+          bgMime[t] = mime;
+        }
       };
       target === 'both' ? (set('menu'), set('display')) : set(target);
+      updateBgInfo();
     }
 
     function clearBg(target) {
       const clr = t => {
-        if (bgVid[t]) { bgVid[t].pause(); bgVid[t].src = ''; bgVid[t] = null; }
-        bgSrc[t] = null; bgPath[t] = ''; bgBase64[t] = null; bgMime[t] = null;
+        if (bgVid[t]) {
+          try { bgVid[t].pause(); bgVid[t].src = ''; } catch (e) {}
+          bgVid[t] = null;
+        }
+        if (bgPath[t] && bgPath[t].startsWith('blob:')) {
+          try { URL.revokeObjectURL(bgPath[t]); } catch (e) {}
+        }
+        bgSrc[t] = null;
+        bgPath[t] = '';
+        bgBase64[t] = null;
+        bgMime[t] = null;
       };
       target === 'both' ? (clr('menu'), clr('display')) : clr(target);
+      updateBgInfo();
     }
 
     function drawBg(which, dim, zoom) {
       const vid = bgVid[which], img = bgSrc[which], src = vid || img;
       if (!src) return;
-      if (vid && (vid.readyState < 2 || !vid.videoWidth)) return;
+      if (vid) {
+        if (vid.readyState < 2 || !vid.videoWidth || !vid.videoHeight) return;
+        if (vid.paused && !vid.ended) {
+          vid.play().catch(() => {});
+        }
+      }
       const sw = vid ? vid.videoWidth : img.naturalWidth;
       const sh = vid ? vid.videoHeight : img.naturalHeight;
       if (!sw || !sh) return;
@@ -1059,16 +1165,58 @@
       const nw = sw * scale, nh = sh * scale;
       ctx.save();
       ctx.drawImage(src, (W - nw) / 2, (H - nh) / 2, nw, nh);
-      ctx.fillStyle = `rgba(0,0,0,${dim})`; ctx.fillRect(0, 0, W, H);
+      const actualDim = typeof dim === 'number' ? dim : bgDimLevel;
+      if (actualDim > 0) {
+        ctx.fillStyle = `rgba(0,0,0,${actualDim})`;
+        ctx.fillRect(0, 0, W, H);
+      }
       ctx.restore();
     }
 
     function showBgMsg(txt, ok) {
       const el = document.getElementById('bgMsg');
-      el.textContent = txt; el.style.color = ok ? '#2ea858' : '#eb4141';
-      document.getElementById('bgInfo').innerHTML = `Menu: ${bgPath.menu ? '...' + bgPath.menu.slice(-26) : '—'}<br>Display: ${bgPath.display ? '...' + bgPath.display.slice(-26) : '—'}`;
+      if (el) {
+        el.textContent = txt;
+        el.style.color = ok ? '#2ea858' : '#eb4141';
+      }
+      updateBgInfo();
     }
-    function updateBgInfo() { showBgMsg('', true); }
+
+    function updateBgInfo() {
+      const formatInfo = t => {
+        if (bgVid[t]) {
+          const name = bgPath[t] ? bgPath[t].split('/').pop().split('\\').pop() : 'Video';
+          const shortName = name.length > 22 ? '...' + name.slice(-18) : name;
+          return `<span style="color:#a55fff;font-weight:bold">🎬 Video: ${shortName}</span>`;
+        }
+        if (bgSrc[t]) {
+          const name = bgPath[t] ? bgPath[t].split('/').pop().split('\\').pop() : 'Ảnh';
+          const shortName = name.length > 22 ? '...' + name.slice(-18) : name;
+          return `<span style="color:#00e1a5;font-weight:bold">🖼️ Ảnh: ${shortName}</span>`;
+        }
+        return `<span style="color:#5f5f69">— Chưa cài —</span>`;
+      };
+
+      const infoEl = document.getElementById('bgInfo');
+      if (infoEl) {
+        infoEl.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <span style="color:#9e9ea8">Menu:</span> ${formatInfo('menu')}
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="color:#9e9ea8">Display (Lyric):</span> ${formatInfo('display')}
+          </div>
+        `;
+      }
+    }
+
+    function ensureBgVideosPlaying() {
+      ['menu', 'display'].forEach(t => {
+        if (bgVid[t] && bgVid[t].paused && !bgVid[t].ended) {
+          bgVid[t].play().catch(() => {});
+        }
+      });
+    }
 
     const P_PAL = [[255, 225, 70], [255, 195, 35], [195, 165, 25], [230, 230, 230], [170, 215, 255], [255, 155, 195], [155, 255, 195], [195, 155, 255], [255, 255, 115], [115, 255, 255]];
     const P_SHP = ['star4', 'star6', 'diamond', 'dot', 'line'];
@@ -1681,7 +1829,7 @@
       ctx.fillText('📦', vb.x + vb.w / 2, vb.y + vb.h / 2 - (1 - easeOut) * 15); ctx.restore();
 
       if (bgPath.menu || bgPath.display) {
-        const p = [bgPath.menu && `Menu:...${bgPath.menu.slice(-18)}`, bgPath.display && `Display:...${bgPath.display.slice(-18)}`].filter(Boolean);
+        const p = [bgPath.menu && `${bgVid.menu ? '🎬' : '🖼️'} Menu:...${bgPath.menu.slice(-18)}`, bgPath.display && `${bgVid.display ? '🎬' : '🖼️'} Display:...${bgPath.display.slice(-18)}`].filter(Boolean);
         ctx.fillStyle = C_DIM; ctx.font = '12px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.globalAlpha = easeOut; ctx.fillText(p.join(' | '), W / 2, H - 38 + (1 - easeOut) * 10); ctx.globalAlpha = 1;
       }
     }
@@ -2135,6 +2283,7 @@
     }
 
     function handlePointer(mx, my) {
+      ensureBgVideosPlaying();
       if (state === 'AUTO_PANEL') {
         // Panel handles its own clicks
         return;
@@ -2222,6 +2371,7 @@
     canvas.addEventListener('touchend', e => { e.preventDefault(); mouseX = -100; mouseY = -100; if (touchMoved) return; const t = e.changedTouches[0]; handlePointer(t.clientX, t.clientY); }, { passive: false });
 
     document.addEventListener('keydown', e => {
+      ensureBgVideosPlaying();
       const tag = document.activeElement.tagName; if (tag === 'INPUT' || tag === 'TEXTAREA') return;
       if (e.key === 'Escape') { if (state !== 'MENU' && state !== 'AUTO_PANEL') goBack(); return; }
       if (e.ctrlKey && e.key.toLowerCase() === 'a') {
@@ -2294,15 +2444,132 @@
     // ============================================================
     // PANEL HANDLERS
     // ============================================================
-    function openBgPanel() { document.getElementById('bgPanel').classList.remove('hidden'); updateBgInfo(); }
-    function closeBgPanel() { document.getElementById('bgPanel').classList.add('hidden'); }
+    function openBgPanel() {
+      document.getElementById('bgPanel').classList.remove('hidden');
+      updateBgTargetBtns();
+      updateMuteBtnUI();
+      updateBgInfo();
+    }
+    function closeBgPanel() {
+      document.getElementById('bgPanel').classList.add('hidden');
+    }
     document.getElementById('bgBtnClose').addEventListener('click', closeBgPanel);
-    ['Menu', 'Display', 'Both'].forEach(t => { document.getElementById('bgBtn' + t).addEventListener('click', () => { bgPickTarget = t.toLowerCase(); updateBgTargetBtns(); }); });
-    document.getElementById('bgBtnLoad').addEventListener('click', () => { const v = document.getElementById('bgPathInput').value.trim(); if (v) { loadBg(v, bgPickTarget); showBgMsg('Loaded!', true); } });
-    document.getElementById('bgBtnClear').addEventListener('click', () => { clearBg(bgPickTarget); showBgMsg('Cleared', true); });
-    document.getElementById('bgBtnImport').addEventListener('click', () => document.getElementById('bgFileInput').click());
-    document.getElementById('bgFileInput').addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; const url = URL.createObjectURL(f); const reader = new FileReader(); reader.onload = ev => { loadBg(url, bgPickTarget, ev.target.result.split(',')[1], f.type); showBgMsg(`Loaded: ${f.name.slice(0, 26)}`, true); }; reader.readAsDataURL(f); });
-    function updateBgTargetBtns() { ['menu', 'display', 'both'].forEach(t => { const id = 'bgBtn' + t.charAt(0).toUpperCase() + t.slice(1), btn = document.getElementById(id); btn.style.background = t === bgPickTarget ? '#559bff' : '#3c3c4e'; btn.style.color = t === bgPickTarget ? '#0c0c0e' : '#f5f5f8'; }); }
+
+    ['Menu', 'Display', 'Both'].forEach(t => {
+      document.getElementById('bgBtn' + t).addEventListener('click', () => {
+        bgPickTarget = t.toLowerCase();
+        updateBgTargetBtns();
+      });
+    });
+
+    function updateBgTargetBtns() {
+      ['menu', 'display', 'both'].forEach(t => {
+        const id = 'bgBtn' + t.charAt(0).toUpperCase() + t.slice(1);
+        const btn = document.getElementById(id);
+        if (btn) {
+          btn.style.background = (t === bgPickTarget) ? '#559bff' : '#3c3c4e';
+          btn.style.color = (t === bgPickTarget) ? '#0c0c0e' : '#f5f5f8';
+          btn.style.fontWeight = (t === bgPickTarget) ? 'bold' : 'normal';
+        }
+      });
+    }
+
+    function updateMuteBtnUI() {
+      const btn = document.getElementById('bgBtnMuteToggle');
+      if (btn) {
+        btn.textContent = bgVideoMuted ? '🔇 Đang tắt tiếng (Tốt nhất)' : '🔊 Đang bật tiếng';
+        btn.style.color = bgVideoMuted ? '#ffbe0b' : '#00e1a5';
+      }
+    }
+
+    document.getElementById('bgBtnMuteToggle').addEventListener('click', () => {
+      bgVideoMuted = !bgVideoMuted;
+      ['menu', 'display'].forEach(t => {
+        if (bgVid[t]) bgVid[t].muted = bgVideoMuted;
+      });
+      updateMuteBtnUI();
+      showToast(bgVideoMuted ? '🔇 Đã tắt tiếng video nền' : '🔊 Đã bật tiếng video nền');
+    });
+
+    document.querySelectorAll('.bg-dim-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.bg-dim-btn').forEach(b => {
+          b.style.background = '#3c3c4e';
+          b.style.color = '#fff';
+          b.style.fontWeight = 'normal';
+        });
+        btn.style.background = '#559bff';
+        btn.style.color = '#000';
+        btn.style.fontWeight = 'bold';
+        bgDimLevel = parseFloat(btn.getAttribute('data-dim')) || 0.45;
+        showToast(`🌓 Độ tối nền: ${Math.round(bgDimLevel * 100)}%`);
+      });
+    });
+
+    function processSelectedBgFile(file, forceType) {
+      if (!file) return;
+      const isVideo = forceType === 'video' || isVideoSource('', file.type, file.name);
+      const blobUrl = URL.createObjectURL(file);
+      const mime = file.type || (isVideo ? 'video/mp4' : 'image/jpeg');
+
+      // Load immediately via blobUrl
+      loadBg(blobUrl, bgPickTarget, null, mime, file.name);
+      showBgMsg(`✓ Đã nạp ${isVideo ? '🎬 Video' : '🖼️ Ảnh'}: ${file.name.slice(0, 22)}`, true);
+      showToast(`✓ Đã nạp ${isVideo ? 'Video' : 'Ảnh'} nền thành công!`);
+
+      // Read base64 in background if <= 20MB for export
+      if (file.size <= 20 * 1024 * 1024) {
+        const reader = new FileReader();
+        reader.onload = ev => {
+          const b64 = ev.target.result.split(',')[1];
+          if (bgPickTarget === 'both') {
+            bgBase64.menu = b64; bgMime.menu = mime;
+            bgBase64.display = b64; bgMime.display = mime;
+          } else {
+            bgBase64[bgPickTarget] = b64;
+            bgMime[bgPickTarget] = mime;
+          }
+          if (currentSongId) saveSettings();
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    document.getElementById('bgBtnImportImg').addEventListener('click', () => {
+      document.getElementById('bgFileInputImg').click();
+    });
+    document.getElementById('bgFileInputImg').addEventListener('change', e => {
+      const f = e.target.files[0];
+      if (f) processSelectedBgFile(f, 'image');
+      e.target.value = '';
+    });
+
+    document.getElementById('bgBtnImportVid').addEventListener('click', () => {
+      document.getElementById('bgFileInputVid').click();
+    });
+    document.getElementById('bgFileInputVid').addEventListener('change', e => {
+      const f = e.target.files[0];
+      if (f) processSelectedBgFile(f, 'video');
+      e.target.value = '';
+    });
+
+    document.getElementById('bgBtnLoad').addEventListener('click', () => {
+      const v = document.getElementById('bgPathInput').value.trim();
+      if (!v) {
+        showBgMsg('Vui lòng dán URL trước', false);
+        return;
+      }
+      const isVideo = isVideoSource(v);
+      loadBg(v, bgPickTarget, null, isVideo ? 'video/mp4' : 'image/jpeg', v);
+      showBgMsg(`✓ Đã nạp ${isVideo ? '🎬 Video' : '🖼️ Ảnh'} từ URL!`, true);
+      showToast(`✓ Đã nạp ${isVideo ? 'Video' : 'Ảnh'} nền từ URL`);
+    });
+
+    document.getElementById('bgBtnClear').addEventListener('click', () => {
+      clearBg(bgPickTarget);
+      showBgMsg('✓ Đã xóa background', true);
+      showToast('Đã xóa background');
+    });
 
     function openNotePanel(idx) { noteEditIdx = idx; document.getElementById('notePanelTitle').textContent = `Note: "${textData[idx][0]}"`; document.getElementById('noteInput').value = textData[idx][7] || ''; document.getElementById('notePanel').classList.remove('hidden'); setTimeout(() => document.getElementById('noteInput').focus(), 50); }
     function closeNotePanel() { document.getElementById('notePanel').classList.add('hidden'); noteEditIdx = -1; }
@@ -2785,10 +3052,28 @@
       }
 
       // Handle image/video files for background
+      const isVideo = isVideoSource('', f.type, f.name);
       const url = URL.createObjectURL(f);
-      const reader = new FileReader();
-      reader.onload = ev => { loadBg(url, bgPickTarget, ev.target.result.split(',')[1], f.type); showBgMsg(`Loaded: ${f.name.slice(0, 26)}`, true); };
-      reader.readAsDataURL(f);
+      const mime = f.type || (isVideo ? 'video/mp4' : 'image/jpeg');
+      loadBg(url, bgPickTarget, null, mime, f.name);
+      showBgMsg(`✓ Đã kéo thả ${isVideo ? '🎬 Video' : '🖼️ Ảnh'}: ${f.name.slice(0, 22)}`, true);
+      showToast(`✓ Đã nạp ${isVideo ? 'Video' : 'Ảnh'} nền!`);
+
+      if (f.size <= 20 * 1024 * 1024) {
+        const reader = new FileReader();
+        reader.onload = ev => {
+          const b64 = ev.target.result.split(',')[1];
+          if (bgPickTarget === 'both') {
+            bgBase64.menu = b64; bgMime.menu = mime;
+            bgBase64.display = b64; bgMime.display = mime;
+          } else {
+            bgBase64[bgPickTarget] = b64;
+            bgMime[bgPickTarget] = mime;
+          }
+          if (currentSongId) saveSettings();
+        };
+        reader.readAsDataURL(f);
+      }
     });
 
     // ============================================================
